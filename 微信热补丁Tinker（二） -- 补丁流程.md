@@ -17,7 +17,8 @@
 - 补丁合成: 这些都在单独的 patch 进程工作，这里包括 dex，so 还有资源，主要完成补丁包的合成以及升级；
 - 监控回调: 在合成与加载过程中，出现问题及时回调；  
 
-经过源码分析，总结出了以下Tinker补丁流程图（上图虚线部分）： 
+经过源码分析，总结出了以下Tinker补丁流程图（上图虚线部分）：   
+
 <img src="http://img.blog.csdn.net/20170111110202142?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTk3MTE4MjM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 以上图片中，标出了加载流程以及它实现的类和方法，本章也是主要着重这个流程分析。

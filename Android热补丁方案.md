@@ -34,7 +34,8 @@
 
 ## 热补丁方案分析 ##
 
-首先，我们针对以上热门的热补丁方案总得来看下他们的功能及性能的优缺点（Dexposed一直没有兼容ART,这里就先不详细分析）：
+首先，我们针对以上热门的热补丁方案总得来看下他们的功能及性能的优缺点（Dexposed一直没有兼容ART,这里就先不详细分析）：  
+
 <img src="http://img.blog.csdn.net/20170105160322336?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTk3MTE4MjM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" width="300px" />  
 
 总的来说：   
@@ -69,7 +70,8 @@ Tinker 的组成，它主要包括以下几部分：
 - 核心sdk库: `tinker-android-lib`
 - 非gradle编译用户的命令行版本**: `tinker-patch-cli.jar`
 
-下面可以看一下Tinker的实现原理：
+下面可以看一下Tinker的实现原理：  
+
 <img src="http://img.blog.csdn.net/20170106135116598?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTk3MTE4MjM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 简单来说，在编译时通过新旧两个Dex生成差异path.dex。在运行时，将差异patch.dex重新跟原始安装包的旧Dex还原为新的Dex。这个过程可能比较耗费时间与内存，所以它是单独放在一个后台进程:patch中。为了补丁包尽量的小，微信自研了DexDiff算法，它深度利用Dex的格式来减少差异的大小。它的粒度是Dex格式的每一项，可以充分利用原本Dex的信息，而BsDiff的粒度是文件，AndFix/QZone的粒度为class。
@@ -82,7 +84,8 @@ Tinker 的组成，它主要包括以下几部分：
 - 版本管理：支持补丁升级，甚至是多个补丁不停的切换。这里我们需要保证所有进程版本的一致性；
 - 安全校验：在补丁合成还是加载，都需要有必要的安全校验。  
 
-这个框架可以简单总结成下面的流程图：
+这个框架可以简单总结成下面的流程图：  
+
 <img src="http://img.blog.csdn.net/20170106092707655?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTk3MTE4MjM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" />
 这里具体的加载流程不再分析，后续文章会详细介绍。 
 
